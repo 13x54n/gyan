@@ -6,42 +6,99 @@ import {
   Image,
   StyleSheet,
   TextInput,
+  ScrollView,
 } from "react-native";
 import React from "react";
 
 import { AntDesign } from "@expo/vector-icons";
+import { Entypo } from "@expo/vector-icons";
+import { Ionicons } from "@expo/vector-icons";
+
 import RecentReads from "../components/RecentReads";
+import BookCard from "../components/BookCard";
+
+import UserReadingLists from "../mocks/YourLists.json";
 
 export default function HomeScreen() {
   return (
-    <SafeAreaView>
-      <View style={styles.header}>
-        <Text style={styles.headerText}>Home</Text>
-        <TouchableOpacity>
-          <Image
-            style={styles.headerAvatar}
-            source={{
-              uri: "https://avatars.githubusercontent.com/u/167803076?s=400&u=d6bda585d921dbe185b3697b6e59369cc3320a97&v=4",
-            }}
-            width={38}
-            height={38}
+    <ScrollView>
+      <SafeAreaView>
+        <View style={styles.header}>
+          <Text style={styles.headerText}>Home</Text>
+          <TouchableOpacity>
+            <Image
+              style={styles.headerAvatar}
+              source={{
+                uri: "https://avatars.githubusercontent.com/u/167803076?s=400&u=d6bda585d921dbe185b3697b6e59369cc3320a97&v=4",
+              }}
+              width={38}
+              height={38}
+            />
+          </TouchableOpacity>
+        </View>
+
+        <View style={styles.searchBarContainer}>
+          <AntDesign
+            name="search1"
+            size={19}
+            color="black"
+            style={{ marginRight: 7 }}
           />
-        </TouchableOpacity>
-      </View>
+          <TextInput
+            style={{ fontSize: 14, flex: 1 }}
+            placeholder="Search for amazing reads..."
+          />
+        </View>
 
-      <View style={styles.searchBarContainer}>
-        <TextInput
-          style={{ fontSize: 14, flex: 1 }}
-          placeholder="✨ Search for amazing reads..."
-        />
-        <AntDesign name="search1" size={19} color="black" />
-      </View>
+        <RecentReads />
 
-      <RecentReads/>
+        <View
+          style={{
+            paddingHorizontal: 20,
+            display: "flex",
+            flexDirection: "row",
+            justifyContent: "space-between",
+            alignItems: "center",
+          }}
+        >
+          <Text style={{ fontSize: 18, fontWeight: "bold" }}>
+            Your Readings
+          </Text>
+          <View
+            style={{
+              display: "flex",
+              alignItems: "center",
+              flexDirection: "row",
+              backgroundColor: '#0001',
+              paddingHorizontal: 5,
+              gap: 2,
+              paddingVertical: 3
+            }}
+          >
+            <TouchableOpacity>
+              <Ionicons name="grid-outline" size={16} color="black" />
+            </TouchableOpacity>
+            <TouchableOpacity>
+              <Entypo name="list" size={20} color="black" />
+            </TouchableOpacity>
+          </View>
+        </View>
 
-      <Text>🏗️ Your Lists</Text>
-      
-    </SafeAreaView>
+        <View
+          style={{
+            marginTop: 15,
+            flexDirection: "row",
+            justifyContent: "space-between",
+            flexWrap: "wrap",
+            paddingHorizontal: 20,
+          }}
+        >
+          {UserReadingLists.map((d, i) => (
+            <BookCard data={d} key={i} />
+          ))}
+        </View>
+      </SafeAreaView>
+    </ScrollView>
   );
 }
 
@@ -66,7 +123,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     marginHorizontal: 20,
-    backgroundColor: "#e8e8e8",
+    backgroundColor: "#0001",
     paddingHorizontal: 10,
     paddingVertical: 12,
     marginVertical: 15,
