@@ -8,7 +8,7 @@ import {
   TextInput,
   ScrollView,
 } from "react-native";
-import React from "react";
+import React, { useState } from "react";
 
 import { AntDesign } from "@expo/vector-icons";
 import { Entypo } from "@expo/vector-icons";
@@ -64,24 +64,6 @@ export default function HomeScreen() {
           <Text style={{ fontSize: 18, fontWeight: "bold" }}>
             Your Readings
           </Text>
-          <View
-            style={{
-              display: "flex",
-              alignItems: "center",
-              flexDirection: "row",
-              backgroundColor: '#0001',
-              paddingHorizontal: 5,
-              gap: 2,
-              paddingVertical: 3
-            }}
-          >
-            <TouchableOpacity>
-              <Ionicons name="grid-outline" size={16} color="black" />
-            </TouchableOpacity>
-            <TouchableOpacity>
-              <Entypo name="list" size={20} color="black" />
-            </TouchableOpacity>
-          </View>
         </View>
 
         <View
